@@ -11,12 +11,14 @@
             let
                 pkgs = import nixpkgs { inherit system; };
 
-                gameVersion = "3.8.1";
-                gameHash = "sha256-0TMp3Ae5t9UbU+DlSFN7WAgNIpTLs3NJXw6A+RiOPKA=";
+                gameVersion = "3.9_alpha";
+                gameUrl = "https://github.com/Teyliu/PVZF-Translation/releases/download/3.9_alpha/PvZ.Fusion.Multi-lang.3.9.alpha.hotfix.by.Blooms.zip";
+                gameHash = "sha256-8TAikfdZ/1ewhJ8RAgDoTNWt8NQfdtO7NyiHIDbXR/U=";
 
-                # The game has some file paths thats mandarin, and `pkgs.fetchzip` doesn't like that.
+                # We don't use pkgs.fetchzip, because it uses `unzip` to unzip the contents which is pretty strict with
+                # how it handles file paths, not handling the paths with alternate encodings.
                 winAppZip = pkgs.fetchurl {
-                    url = "https://github.com/Teyliu/PVZF-Translation/releases/download/${gameVersion}_beta/PvZ.Fusion.${gameVersion}.Multi-lang.Beta.by.Blooms.zip";
+                    url = gameUrl;
                     sha256 = gameHash;
                 };
                 winAppDir = "Game Files";
@@ -27,7 +29,6 @@
                 app = pkgs.writeShellApplication {
                     name = "pvz-fusion";
                     runtimeInputs = with pkgs; [
-                        # 7z works better here than unzip because the game has some file paths that are in mandarin, and unzip just refuses to work with them.
                         p7zip
                         wineWow64Packages.stable
                         coreutils
