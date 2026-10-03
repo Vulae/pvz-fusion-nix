@@ -11,9 +11,9 @@
             let
                 pkgs = import nixpkgs { inherit system; };
 
-                gameVersion = "3.9_alpha";
-                gameUrl = "https://github.com/Teyliu/PVZF-Translation/releases/download/3.9_alpha/PvZ.Fusion.Multi-lang.3.9.alpha.hotfix.by.Blooms.zip";
-                gameHash = "sha256-8TAikfdZ/1ewhJ8RAgDoTNWt8NQfdtO7NyiHIDbXR/U=";
+                gameVersion = "4.0.5_alpha";
+                gameUrl = "https://github.com/Teyliu/PVZF-Translation/releases/download/4.0.5_alpha/PvZ.Fusion.Multi-lang.4.0.5.Alpha.by.Blooms.zip";
+                gameHash = "sha256-ihrUSxFRulo0dttmR7wVJ9CGfEDTnEyVmbm56/+091M=";
 
                 # We don't use pkgs.fetchzip, because it uses `unzip` to unzip the contents which is pretty strict with
                 # how it handles file paths, not handling the paths with alternate encodings.
